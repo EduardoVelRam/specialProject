@@ -10,7 +10,7 @@
 
 #define SLEEP_TIME_MS   1000
 
-#define ICP20100_ICP_ADDRESS   0x63 /* p. 20 Datasheet*/
+#define ICP20100_I2C_ADDRESS   0x63 /* p. 20 Datasheet*/
 #define ICP20100_TEMP_REGISTER 0xFD /* p. 43 Datasheet*/
 #define ICP20100_PRES_REGISTER 0XFA /* p. 43 Datasheet*/
 
@@ -40,8 +40,8 @@ void main(void){
 
     while (true) {
 
-        i2c_buffer[0]=ICP20100_TEMP_REGISTER;
-		i2c_buffer[1]=ICP20100_PRES_REGISTER;
+        i2c_buffer[1]=ICP20100_TEMP_REGISTER;  /* Revisar */
+		i2c_buffer[2]=ICP20100_PRES_REGISTER;  /* Revisar */
 
         do{
             err = i2c_read(i2c_dev, i2c_buffer, 3, ICP20100_I2C_ADDRESS); /* Son 3 bytes porque se leen 20 bits */
